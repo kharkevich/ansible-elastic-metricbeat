@@ -1,0 +1,9 @@
+---
+# defaults file for ansible-elastic-metricbeat
+elastic_version: 6.x
+kibana_host: "http://localhost:5601"
+elasticsearch_hosts:
+  - localhost:9200
+
+# Available log levels are: error, warning, info, debug
+log_level: info
