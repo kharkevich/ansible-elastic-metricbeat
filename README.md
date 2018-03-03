@@ -20,10 +20,10 @@ None.
       roles:
         - kharkevich.metricbeat
       vars:
-        kibana_host: "http://kibana.exaple.com:5601"
+        kibana_host: "http://kibana.example.com:5601"
         elasticsearch_hosts:
-      	  - elastic0.exaple.com:9200
-      	  - elastic1.exaple.com:9200
+      	  - elastic0.example.com:9200
+      	  - elastic1.example.com:9200
 
 ## License
 
