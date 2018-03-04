@@ -81,7 +81,7 @@ setup.kibana:
 #-------------------------- Elasticsearch output ------------------------------
 output.elasticsearch:
   # Array of hosts to connect to.
-  hosts: {{ elasticsearch_hosts }}
+  hosts: {{ elasticsearch_hosts | to_yaml }}
 
   # Optional protocol and basic auth credentials.
   #protocol: "https"
