@@ -17,6 +17,9 @@ galaxy_info:
   github_branch: master
 
   platforms:
+    - name: Debian
+      versions:
+        - stretch
     - name: Ubuntu
       versions:
         - xenial
