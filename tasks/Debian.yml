@@ -11,3 +11,9 @@
     state: present
     filename: "elastic-{{ elastic_version }}"
   become: yes
+
+- name: ensure that apt-transport-https presented
+  package:
+    name: apt-transport-https
+    state: present
+  become: yes
