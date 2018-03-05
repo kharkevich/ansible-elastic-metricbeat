@@ -1,4 +1,4 @@
-# Ansible Role: Metricbeat for Elastic
+# Ansible Role: Metricbeat for Elastic [![Build Status](https://travis-ci.org/kharkevich/ansible-elastic-metricbeat.svg?branch=master)](https://travis-ci.org/kharkevich/ansible-elastic-metricbeat)
 
 An Ansible Role that installs [Metricbeat](https://www.elastic.co/products/beats/metricbeat) on RedHat or Debian family distributives.
 
