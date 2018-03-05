@@ -18,7 +18,7 @@ before_install:
   - sudo apt-get install -y -o Dpkg::Options::="--force-confnew" docker-ce
 
 install:
-  - sudo pip install ansible ansible-lint docker-py molecule
+  - sudo pip install --upgrade ansible ansible-lint docker-py molecule
   - ansible --version
   - molecule --version
 
