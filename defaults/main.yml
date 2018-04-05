@@ -16,3 +16,6 @@ elasticsearch_protocol: http
 
 # Available log levels are: error, warning, info, debug
 log_level: info
+
+# dashboards / template / machine-learning setup for metricbeat
+metricbeat_run_setup: false

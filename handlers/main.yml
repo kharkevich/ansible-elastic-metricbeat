@@ -6,3 +6,9 @@
     state: restarted
     enabled: yes
   become: yes
+
+- name: dashboards setup
+  listen: restart_metricbeat
+  command: metricbeat setup
+  when: metricbeat_run_setup
+  become: yes
