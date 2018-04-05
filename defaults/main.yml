@@ -19,3 +19,5 @@ log_level: info
 
 # dashboards / template / machine-learning setup for metricbeat
 metricbeat_run_setup: false
+
+metricbeat_xpack_monitoring_enabled: false
