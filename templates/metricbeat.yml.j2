@@ -78,16 +78,24 @@ setup.kibana:
 
 # Configure what output to use when sending the data collected by the beat.
 
+{% if metricbeat_output == 'elasticsearch' %}
 #-------------------------- Elasticsearch output ------------------------------
 output.elasticsearch:
   # Array of hosts to connect to.
   hosts: {{ elasticsearch_hosts | to_yaml }}
 
   # Optional protocol and basic auth credentials.
-  #protocol: "https"
-  #username: "elastic"
-  #password: "changeme"
+  protocol: "{{ elasticsearch_protocol }}"
 
+  {% if elasticsearch_username is defined %}
+    username: "{{ elasticsearch_username }}"
+  {% endif %}
+
+  {% if elasticsearch_password is defined %}
+    password: "{{ elasticsearch_password }}"
+  {% endif %}
+
+{% elif metricbeat_output == 'logstash' %}
 #----------------------------- Logstash output --------------------------------
 #output.logstash:
   # The Logstash hosts
@@ -102,6 +110,7 @@ output.elasticsearch:
 
   # Client Certificate Key
   #ssl.key: "/etc/pki/client/cert.key"
+{% endif %}
 
 #================================ Logging =====================================
 

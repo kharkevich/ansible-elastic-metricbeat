@@ -5,5 +5,14 @@ kibana_host: "http://localhost:5601"
 elasticsearch_hosts:
   - localhost:9200
 
+# valid values: elasticsearch, logstash
+metricbeat_output: elasticsearch
+
+elasticsearch_protocol: http
+
+# authentication if needed
+#elasticsearch_username: elastic
+#elasticsearch_password: password
+
 # Available log levels are: error, warning, info, debug
 log_level: info
