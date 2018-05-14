@@ -8,6 +8,8 @@ elasticsearch_hosts:
 # valid values: elasticsearch, logstash
 metricbeat_output: elasticsearch
 
+metricbeat_index: "metricbeat-%{[beat.version]}-%{+yyyy.MM.dd}"
+
 elasticsearch_protocol: http
 
 # authentication if needed
