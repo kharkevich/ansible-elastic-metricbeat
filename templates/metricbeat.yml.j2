@@ -88,20 +88,20 @@ output.elasticsearch:
   # Array of hosts to connect to.
   hosts: {{ elasticsearch_hosts | to_yaml }}
 
-  {% if metricbeat_index_name is defined %}
+{% if metricbeat_index_name is defined %}
   index: "{{ metricbeat_index_name }}-%{[beat.version]}-%{+yyyy.MM.dd}"
-  {% endif %}
+{% endif %}
 
   # Optional protocol and basic auth credentials.
   protocol: "{{ elasticsearch_protocol }}"
 
-  {% if elasticsearch_username is defined %}
-    username: "{{ elasticsearch_username }}"
-  {% endif %}
+{% if elasticsearch_username is defined %}
+  username: "{{ elasticsearch_username }}"
+{% endif %}
 
-  {% if elasticsearch_password is defined %}
-    password: "{{ elasticsearch_password }}"
-  {% endif %}
+{% if elasticsearch_password is defined %}
+  password: "{{ elasticsearch_password }}"
+{% endif %}
 
 {% elif metricbeat_output == 'logstash' %}
 #----------------------------- Logstash output --------------------------------
