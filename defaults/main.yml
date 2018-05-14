@@ -8,7 +8,8 @@ elasticsearch_hosts:
 # valid values: elasticsearch, logstash
 metricbeat_output: elasticsearch
 
-metricbeat_index: "metricbeat-%{[beat.version]}-%{+yyyy.MM.dd}"
+# custom index name for metricbeat
+# metricbeat_index_name: metricbeat
 
 elasticsearch_protocol: http
 

@@ -21,6 +21,11 @@ setup.template.settings:
   index.codec: best_compression
   #_source.enabled: false
 
+{% if metricbeat_index_name is defined %}
+setup.template.name: "{{ metricbeat_index_name }}"
+setup.template.pattern: "{{ metricbeat_index_name }}-*"
+{% endif %}
+
 #================================ General =====================================
 
 # The name of the shipper that publishes the network data. It can be used to group
@@ -42,6 +47,10 @@ setup.dashboards.enabled: {{ metricbeat_setup_dashboards }}
 
 {% if metricbeat_dashboards_url is defined %}
 setup.dashboards.url: "{{ metricbeat_dashboards_url }}"
+{% endif %}
+
+{% if metricbeat_index_name is defined %}
+setup.dashboards.index: "{{ metricbeat_index_name }}-*"
 {% endif %}
 
 #============================== Kibana =====================================
@@ -79,7 +88,9 @@ output.elasticsearch:
   # Array of hosts to connect to.
   hosts: {{ elasticsearch_hosts | to_yaml }}
 
-  index: {{ metricbeat_index }}
+  {% if metricbeat_index_name is defined %}
+  index: "{{ metricbeat_index_name }}-%{[beat.version]}-%{+yyyy.MM.dd}"
+  {% endif %}
 
   # Optional protocol and basic auth credentials.
   protocol: "{{ elasticsearch_protocol }}"
