@@ -1,6 +1,8 @@
 ---
 # tasks file for ansible-elastic-metricbeat
-- include_tasks: "{{ ansible_os_family }}.yml"
+- import_tasks: "{{ ansible_os_family }}.yml"
+  tags:
+    - install-packages
 
 - name: Install Metricbeat
   package:
