@@ -1,6 +1,7 @@
 ---
 galaxy_info:
   author: Aliaksandr Kharkevich
+  role_name: "elastic_metricbeat"
   description: >
     Deploy Metricbeat: Lightweight Shipper for Metrics
   company:

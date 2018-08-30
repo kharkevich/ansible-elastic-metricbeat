@@ -14,23 +14,23 @@ metricbeat_output: elasticsearch
 elasticsearch_protocol: http
 
 # authentication if needed
-#elasticsearch_username: elastic
-#elasticsearch_password: password
+# elasticsearch_username: elastic
+# elasticsearch_password: password
 
 # Available log levels are: error, warning, info, debug
 log_level: info
 
-metricbeat_xpack_monitoring_enabled: false
+metricbeat_xpack_monitoring_enabled: False
 
 metricbeat_name: "{{ ansible_fqdn }}"
 metricbeat_tags: []
-  # - service-X
-  # - web-tier
+#  - service-X
+#  - web-tier
 
 # These settings control loading the sample dashboards to the Kibana index. Loading
 # the dashboards is disabled by default and can be enabled either by setting the
 # options here, or by using the `-setup` CLI flag or the `setup` command.
-metricbeat_setup_dashboards: false
+metricbeat_setup_dashboards: False
 
 # The URL from where to download the dashboards archive. By default this URL
 # has a value which is computed based on the Beat name and version. For released

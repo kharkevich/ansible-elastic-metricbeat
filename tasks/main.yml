@@ -1,13 +1,15 @@
 ---
 # tasks file for ansible-elastic-metricbeat
-- include_tasks: "{{ ansible_os_family  }}.yml"
+- include_tasks: "{{ ansible_os_family }}.yml"
 
 - name: Install Metricbeat
   package:
     name: metricbeat
     state: present
   notify: restart_metricbeat
-  become: yes
+  tags:
+    - install-packages
+  become: True
 
 - name: Copy Metricbeat configuration.
   template:
@@ -17,4 +19,4 @@
     group: root
     mode: 0644
   notify: restart_metricbeat
-  become: yes
+  become: True
