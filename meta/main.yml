@@ -4,7 +4,6 @@ galaxy_info:
   role_name: "elastic_metricbeat"
   description: >
     Deploy Metricbeat: Lightweight Shipper for Metrics
-  company:
 
   issue_tracker_url: https://github.com/kharkevich/ansible-elastic-metricbeat/issues
 
