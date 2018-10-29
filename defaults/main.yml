@@ -6,7 +6,7 @@ elasticsearch_hosts:
   - localhost:9200
 
 logstash_hosts: 
-  - localhost:5015
+  - localhost:5044
 
 logstash_cert: "/foo/bar.crt"
 logstash_token: "AUTH_TOKEN"

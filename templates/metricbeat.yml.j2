@@ -112,8 +112,8 @@ output.elasticsearch:
 #----------------------------- Logstash output --------------------------------
 output.logstash:
   # The Logstash hosts
-  hosts: [{{ logstash_hosts | to_yaml }}]
-  ssl.certificate_authorities: [{{ logstash_cert }}]
+  hosts: {{ logstash_hosts | to_yaml }}
+  ssl.certificate_authorities: {{ logstash_cert | to_yaml }}
 
   # Optional SSL. By default is off.
   # List of root certificates for HTTPS server verifications
