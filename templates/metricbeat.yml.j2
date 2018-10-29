@@ -40,7 +40,12 @@ tags: {{ metricbeat_tags | to_yaml }}
 # output.
 #fields:
 #  env: staging
-
+{% if metricbeat_output == 'logstash' %}
+fields:
+  logzio_codec: {{ logzio_codec }}
+  token: {{ logstash_token }}
+fields_under_root: {{ fields_under_root }}
+{% endif %}
 
 #============================== Dashboards =====================================
 setup.dashboards.enabled: {{ metricbeat_setup_dashboards }}
@@ -105,9 +110,10 @@ output.elasticsearch:
 
 {% elif metricbeat_output == 'logstash' %}
 #----------------------------- Logstash output --------------------------------
-#output.logstash:
+output.logstash:
   # The Logstash hosts
-  #hosts: ["localhost:5044"]
+  hosts: [{{ logstash_hosts | to_yaml }}]
+  ssl.certificate_authorities: [{{ logstash_cert }}]
 
   # Optional SSL. By default is off.
   # List of root certificates for HTTPS server verifications
