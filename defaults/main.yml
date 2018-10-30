@@ -5,7 +5,7 @@ kibana_host: "http://localhost:5601"
 elasticsearch_hosts:
   - localhost:9200
 
-logstash_hosts: 
+logstash_hosts:
   - localhost:5044
 
 logstash_cert: "/foo/bar.crt"
