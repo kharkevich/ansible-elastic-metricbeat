@@ -9,10 +9,10 @@ logstash_hosts:
   - localhost:5044
 
 #metricbeat_fields:
-#  - logstash_cert: "/foo/bar.crt"
 #  - logstash_token: "AUTH_TOKEN"
 #  - logzio_codec: json
-#  - under_root: True
+#metricbeat_fields_under_root: True
+#metricbeat_logstash_cert: "/foo/bar.crt"
 
 # valid values: elasticsearch, logstash
 metricbeat_output: elasticsearch
