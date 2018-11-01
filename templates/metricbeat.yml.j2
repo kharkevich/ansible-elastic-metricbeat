@@ -43,7 +43,7 @@ tags: {{ metricbeat_tags | to_yaml }}
 {% if metricbeat_fields is defined %}
 fields:
 {% for item in metricbeat_fields -%}}
-  {{ item }}
+  {{ item | to_yaml }}
 {%- endfor %}}
 {% if metricbeat_fields_under_root is defined %}
 fields_under_root: {{ metricbeat_fields_under_root }}
