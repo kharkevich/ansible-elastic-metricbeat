@@ -65,6 +65,7 @@ setup.dashboards.index: "{{ metricbeat_index_name }}-*"
 
 # Starting with Beats version 6.0.0, the dashboards are loaded via the Kibana API.
 # This requires a Kibana endpoint configuration.
+{% if kibana_host is defined %}
 setup.kibana:
 
   # Kibana Host
@@ -72,7 +73,7 @@ setup.kibana:
   # In case you specify and additional path, the scheme is required: http://localhost:5601/path
   # IPv6 addresses should always be defined as: https://[2001:db8::1]:5601
   host: "{{ kibana_host }}"
-
+{% endif %}
 #============================= Elastic Cloud ==================================
 
 # These settings simplify using metricbeat with the Elastic Cloud (https://cloud.elastic.co/).
