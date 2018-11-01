@@ -42,9 +42,9 @@ tags: {{ metricbeat_tags | to_yaml }}
 #  env: staging
 {% if metricbeat_fields is defined %}
 fields:
-{% for item in metricbeat_fields -%}}
-  {{ item | to_yaml }}
-{%- endfor %}}
+{% for field, value in metricbeat_fields.iteritems() %}}
+  - {{ field }}}: {{ value }}
+{% endfor %}}
 {% if metricbeat_fields_under_root is defined %}
 fields_under_root: {{ metricbeat_fields_under_root }}
 {% endif %}
