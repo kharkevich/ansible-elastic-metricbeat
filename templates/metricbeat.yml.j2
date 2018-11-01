@@ -42,9 +42,9 @@ tags: {{ metricbeat_tags | to_yaml }}
 #  env: staging
 {% if metricbeat_fields is defined %}
 fields:
-  {% for item in metricbeat_fields -%}}
+{% for item in metricbeat_fields -%}}
   {{ item }}
-  {%- endfor %}}
+{%- endfor %}}
 {% if metricbeat_fields_under_root is defined %}
 fields_under_root: {{ metricbeat_fields_under_root }}
 {% endif %}
@@ -116,9 +116,9 @@ output.elasticsearch:
 output.logstash:
   # The Logstash hosts
   hosts: {{ logstash_hosts | to_yaml }}
-  {% if metricbeat_logstash_cert is defined %}
+{% if metricbeat_logstash_cert is defined %}
   ssl.certificate_authorities: {{ metricbeat_logstash_cert }}
-  {% endif %}
+{% endif %}
   # Optional SSL. By default is off.
   # List of root certificates for HTTPS server verifications
   #ssl.certificate_authorities: ["/etc/pki/root/ca.pem"]
