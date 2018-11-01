@@ -42,7 +42,9 @@ tags: {{ metricbeat_tags | to_yaml }}
 #  env: staging
 {% if metricbeat_fields is defined %}
 fields:
-  {{ metricbeat_fields | indent( width=2 ) }}
+  {% for item in metricbeat_fields -%}}
+  {{ item }}
+  {%- endfor %}}
 {% if metricbeat_fields_under_root is defined %}
 fields_under_root: {{ metricbeat_fields_under_root }}
 {% endif %}
@@ -92,8 +94,7 @@ setup.kibana:
 #-------------------------- Elasticsearch output ------------------------------
 output.elasticsearch:
   # Array of hosts to connect to.
-  hosts:
-    {{ elasticsearch_hosts | indent ( width=4 ) }}
+  hosts: {{ elasticsearch_hosts | to_yamls }}
 
 {% if metricbeat_index_name is defined %}
   index: "{{ metricbeat_index_name }}-%{[beat.version]}-%{+yyyy.MM.dd}"
