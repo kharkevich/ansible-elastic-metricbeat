@@ -42,7 +42,7 @@ tags: {{ metricbeat_tags | to_yaml }}
 #  env: staging
 {% if metricbeat_fields is defined %}
 fields:
-  {{ metricbeat_fields | to_yaml indent( width=2 ) }}
+  {{ metricbeat_fields | indent( width=2 ) }}
 {% if metricbeat_fields_under_root is defined %}
 fields_under_root: {{ metricbeat_fields_under_root }}
 {% endif %}
