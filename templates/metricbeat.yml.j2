@@ -92,7 +92,8 @@ setup.kibana:
 #-------------------------- Elasticsearch output ------------------------------
 output.elasticsearch:
   # Array of hosts to connect to.
-  hosts: {{ elasticsearch_hosts | to_yaml }}
+  hosts:
+    {{ elasticsearch_hosts | indent ( width=4 ) }}
 
 {% if metricbeat_index_name is defined %}
   index: "{{ metricbeat_index_name }}-%{[beat.version]}-%{+yyyy.MM.dd}"
