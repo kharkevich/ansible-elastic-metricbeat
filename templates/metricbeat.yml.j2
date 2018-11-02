@@ -119,7 +119,7 @@ output.logstash:
   # The Logstash hosts
   hosts: {{ logstash_hosts | to_yaml }}
 {% if metricbeat_logstash_cert is defined %}
-  ssl.certificate_authorities: {{ metricbeat_logstash_cert }}
+  ssl.certificate_authorities: {{ metricbeat_logstash_cert | to_yaml }}
 {% endif %}
   # Optional SSL. By default is off.
   # List of root certificates for HTTPS server verifications
