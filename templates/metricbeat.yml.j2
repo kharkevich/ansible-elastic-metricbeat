@@ -74,6 +74,11 @@ setup.kibana:
   # IPv6 addresses should always be defined as: https://[2001:db8::1]:5601
   host: "{{ kibana_host }}"
 {% endif %}
+{% if kibana_dashboard_options is defined %}
+{% for option, value in kibana_dashboard_options() %}
+{{ option }}: {{ value }}
+{% endfor %}
+{% endif %}
 #============================= Elastic Cloud ==================================
 
 # These settings simplify using metricbeat with the Elastic Cloud (https://cloud.elastic.co/).
