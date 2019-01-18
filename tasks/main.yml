@@ -30,15 +30,15 @@
     owner: root
     group: root
     mode: 0644
+  loop: "{{ metricbeat_modules | flatten(levels=1) }}"
   notify: restart_metricbeat
   become: True
-  with_items: "{{ metricbeat_modules }}"
 
 - name: Disabling modules
   file:
     path: "/etc/metricbeat/modules.d/{{ item }}.yml"
     state: absent
-  with_items: "{{ metricbeat_list_modules }}"
+  loop: "{{ metricbeat_list_modules | flatten(levels=1) }}"
   when: (item not in metricbeat_modules) and (item not in metricbeat_modules_exclude)
   become: True
   notify: restart_metricbeat
