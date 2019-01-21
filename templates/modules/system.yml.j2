@@ -2,11 +2,10 @@
 # Docs: https://www.elastic.co/guide/en/beats/metricbeat/6.5/metricbeat-module-system.html
 
 {% if module_configuration is defined and (module_configuration | selectattr("module", "match", "system") | list | length)  %}
-# Module custom settings
+{# Module custom settings #}
 {{ module_configuration | selectattr("module", "match", "system") | list | to_nice_yaml }}
-
 {% else %}
-# Module default settings
+{# Module default settings #}
 - module: system
   period: 10s
   metricsets:

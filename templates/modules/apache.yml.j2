@@ -2,11 +2,10 @@
 # Docs: https://www.elastic.co/guide/en/beats/metricbeat/6.5/metricbeat-module-apache.html
 
 {% if module_configuration is defined and (module_configuration | selectattr("module", "match", "apache") | list | length)  %}
-# Module custom settings
+{# Module custom settings #}
 {{ module_configuration | selectattr("module", "match", "apache") | list | to_nice_yaml }}
-
 {% else %}
-# Module default settings
+{# Module default settings #}
 - module: apache
   #metricsets:
   #  - status
