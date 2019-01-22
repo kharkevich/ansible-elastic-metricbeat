@@ -1,6 +1,11 @@
 # Module: kafka
 # Docs: https://www.elastic.co/guide/en/beats/metricbeat/6.5/metricbeat-module-kafka.html
 
+{% if module_configuration is defined and (module_configuration | selectattr("module", "match", "kafka") | list | length)  %}
+{# Module custom settings #}
+{{ module_configuration | selectattr("module", "match", "kafka") | list | to_nice_yaml }}
+{% else %}
+{# Module default settings #}
 - module: kafka
   #metricsets:
   #  - partition
@@ -28,3 +33,4 @@
   # SASL authentication
   #username: ""
   #password: ""
+{% endif %}

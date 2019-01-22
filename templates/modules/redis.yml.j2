@@ -1,6 +1,11 @@
 # Module: redis
 # Docs: https://www.elastic.co/guide/en/beats/metricbeat/6.5/metricbeat-module-redis.html
 
+{% if module_configuration is defined and (module_configuration | selectattr("module", "match", "redis") | list | length)  %}
+{# Module custom settings #}
+{{ module_configuration | selectattr("module", "match", "redis") | list | to_nice_yaml }}
+{% else %}
+{# Module default settings #}
 - module: redis
   #metricsets:
   #  - info
@@ -18,3 +23,4 @@
 
   # Redis AUTH password. Empty by default.
   #password: foobared
+{% endif %}

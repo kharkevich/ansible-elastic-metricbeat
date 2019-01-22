@@ -1,6 +1,11 @@
 # Module: mongodb
 # Docs: https://www.elastic.co/guide/en/beats/metricbeat/6.5/metricbeat-module-mongodb.html
 
+{% if module_configuration is defined and (module_configuration | selectattr("module", "match", "mongodb") | list | length)  %}
+{# Module custom settings #}
+{{ module_configuration | selectattr("module", "match", "mongodb") | list | to_nice_yaml }}
+{% else %}
+{# Module default settings #}
 - module: mongodb
   #metricsets:
   #  - dbstats
@@ -37,3 +42,4 @@
 
   # Password to use when connecting to MongoDB. Empty by default.
   #password: pass
+{% endif %}

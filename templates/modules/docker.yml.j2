@@ -1,6 +1,11 @@
 # Module: docker
 # Docs: https://www.elastic.co/guide/en/beats/metricbeat/6.5/metricbeat-module-docker.html
 
+{% if module_configuration is defined and (module_configuration | selectattr("module", "match", "docker") | list | length)  %}
+{# Module custom settings #}
+{{ module_configuration | selectattr("module", "match", "docker") | list | to_nice_yaml }}
+{% else %}
+{# Module default settings #}
 - module: docker
   #metricsets:
   #  - container
@@ -21,3 +26,4 @@
     #certificate_authority: "/etc/pki/root/ca.pem"
     #certificate:           "/etc/pki/client/cert.pem"
     #key:                   "/etc/pki/client/cert.key"
+{% endif %}

@@ -1,6 +1,11 @@
 # Module: couchbase
 # Docs: https://www.elastic.co/guide/en/beats/metricbeat/6.5/metricbeat-module-couchbase.html
 
+{% if module_configuration is defined and (module_configuration | selectattr("module", "match", "couchbase") | list | length)  %}
+{# Module custom settings #}
+{{ module_configuration | selectattr("module", "match", "couchbase") | list | to_nice_yaml }}
+{% else %}
+{# Module default settings #}
 - module: couchbase
   #metricsets:
   #  - bucket
@@ -10,3 +15,4 @@
   hosts: ["localhost:8091"]
   #username: "user"
   #password: "secret"
+{% endif %}

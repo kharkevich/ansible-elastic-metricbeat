@@ -1,6 +1,11 @@
 # Module: http
 # Docs: https://www.elastic.co/guide/en/beats/metricbeat/6.5/metricbeat-module-http.html
 
+{% if module_configuration is defined and (module_configuration | selectattr("module", "match", "http") | list | length)  %}
+{# Module custom settings #}
+{{ module_configuration | selectattr("module", "match", "http") | list | to_nice_yaml }}
+{% else %}
+{# Module default settings #}
 - module: http
   #metricsets:
   #  - json
@@ -28,3 +33,4 @@
   #    namespace: "foo"
   #    fields: # added to the the response in root. overwrites existing fields
   #      key: "value"
+{% endif %}

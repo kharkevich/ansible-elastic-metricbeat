@@ -1,6 +1,11 @@
 # Module: jolokia
 # Docs: https://www.elastic.co/guide/en/beats/metricbeat/6.5/metricbeat-module-jolokia.html
 
+{% if module_configuration is defined and (module_configuration | selectattr("module", "match", "jolokia") | list | length)  %}
+{# Module custom settings #}
+{{ module_configuration | selectattr("module", "match", "jolokia") | list | to_nice_yaml }}
+{% else %}
+{# Module default settings #}
 - module: jolokia
   #metricsets: ["jmx"]
   period: 10s
@@ -30,3 +35,4 @@
 
   jmx.application:
   jmx.instance:
+{% endif %}

@@ -1,6 +1,11 @@
 # Module: mysql
 # Docs: https://www.elastic.co/guide/en/beats/metricbeat/6.5/metricbeat-module-mysql.html
 
+{% if module_configuration is defined and (module_configuration | selectattr("module", "match", "mysql") | list | length)  %}
+{# Module custom settings #}
+{{ module_configuration | selectattr("module", "match", "mysql") | list | to_nice_yaml }}
+{% else %}
+{# Module default settings #}
 - module: mysql
   #metricsets:
   #  - status
@@ -17,3 +22,4 @@
 
   # Password of hosts. Empty by default.
   #password: secret
+{% endif %}
