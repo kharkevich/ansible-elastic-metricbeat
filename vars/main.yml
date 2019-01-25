@@ -22,7 +22,6 @@ metricbeat_list_modules:
   - kvm
   - logstash
   - memcached
-  - modules_names.txt
   - mongodb
   - munin
   - mysql
