@@ -22,3 +22,32 @@
     mode: 0644
   notify: restart_metricbeat
   become: True
+
+- name: Establishing modules
+  template:
+    src: modules/{{ item }}.yml.j2
+    dest: "/etc/metricbeat/modules.d/{{ item }}.yml"
+    owner: root
+    group: root
+    mode: 0644
+  with_items: "{{ metricbeat_modules }}"
+  notify: restart_metricbeat
+  become: True
+
+- name: Disabling modules
+  file:
+    path: "/etc/metricbeat/modules.d/{{ item }}.yml"
+    state: absent
+  with_items: "{{ metricbeat_list_modules }}"
+  when: (item not in metricbeat_modules) and (item not in metricbeat_modules_exclude)
+  become: True
+  notify: restart_metricbeat
+
+- name: Erase unmanaged modules
+  file:
+    path: "{{ item }}"
+    state: absent
+  with_fileglob:
+    - "/etc/metricbeat/modules.d/*.yml.disabled"
+  become: True
+  notify: restart_metricbeat
