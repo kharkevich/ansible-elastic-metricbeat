@@ -43,11 +43,15 @@
   become: True
   notify: restart_metricbeat
 
+- name: List all disabled modules
+  find:
+    paths: "/etc/metricbeat/modules.d"
+    patterns: "*.disabled"
+  register: metricbeat_disabled_modules
+
 - name: Erase unmanaged modules
   file:
-    path: "{{ item }}"
+    path: "{{ item.path }}"
     state: absent
-  with_fileglob:
-    - "/etc/metricbeat/modules.d/*.yml.disabled"
+  with_items: "{{ metricbeat_disabled_modules.files }}"
   become: True
-  notify: restart_metricbeat
